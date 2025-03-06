@@ -13,11 +13,8 @@ cd cCarSaleManagementSystem
 ```
 2. Build the binary
 ```bash
-# optional: cleans previous builds
-make clean
-bear -- make
-# or just make
-# if you dont need compile_commands
+make clean # optional: cleans previous builds
+bear -- make # or just make if you dont need compile_commands
 ```
 
 ## Project structure
