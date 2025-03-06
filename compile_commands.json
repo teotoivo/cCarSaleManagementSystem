@@ -1,0 +1,19 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-Wall",
+      "-Wextra",
+      "-std=c99",
+      "-pedantic",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "obj/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/teotoivo/Projects/c_tehtavat_koulu/projekti",
+    "file": "/home/teotoivo/Projects/c_tehtavat_koulu/projekti/src/main.c",
+    "output": "/home/teotoivo/Projects/c_tehtavat_koulu/projekti/obj/main.o"
+  }
+]

@@ -1,0 +1,20 @@
+CompileFlags:
+  Add: [-Wall, -Wextra, -std=c99, -pedantic]
+  CompilationDatabase: .
+  
+Index:
+  Background: Build
+  
+InlayHints:
+  Enabled: Yes
+  
+Diagnostics:
+  UnusedIncludes: Strict
+  
+Hover:
+  ShowAKA: Yes
+
+If:
+  PathMatch: src/.*
+  CompileFlags:
+    Add: [-I../include]
