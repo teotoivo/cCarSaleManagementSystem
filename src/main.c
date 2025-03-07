@@ -1,5 +1,6 @@
 #include "car_data.h"
 #include "car_operations.h"
+#include "file_operations.h"
 #include "reports.h"
 #include "test_data.h"
 #include "ui.h"
@@ -7,28 +8,24 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main(void)
-{
+int main(void) {
   srand(time(NULL));
   CarNode *head = NULL;
   int choice;
 
-  initialize_test_data(&head);
+  load_data(&head);
 
-  while (1)
-  {
+  // initialize_test_data(&head);
+
+  while (1) {
     print_header();
     choice = get_user_choice();
 
-    switch (choice)
-    {
+    switch (choice) {
     case 1:
-      if (!add_new_car(&head))
-      {
+      if (!add_new_car(&head)) {
         wait_for_enter();
-      }
-      else
-      {
+      } else {
         clear_terminal();
         printf("Car added\n");
         wait_for_enter();
@@ -50,8 +47,12 @@ int main(void)
       sell_car(head);
       break;
     case 7:
+      save_data(head);
       break;
     case 8:
+      if (save_changes()) {
+        save_data(head);
+      }
       free_cars(head);
       return EXIT_SUCCESS;
       break;

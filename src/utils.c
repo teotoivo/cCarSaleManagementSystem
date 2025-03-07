@@ -6,25 +6,19 @@
 #include <string.h>
 #include <time.h>
 
-bool get_user_input(char *buffer, size_t size)
-{
-  if (buffer == NULL || size <= 0)
-  {
+bool get_user_input(char *buffer, size_t size) {
+  if (buffer == NULL || size <= 0) {
     return false;
   }
 
-  if (fgets(buffer, size, stdin) == NULL)
-  {
+  if (fgets(buffer, size, stdin) == NULL) {
     return false;
   }
 
   char *newLine = strchr(buffer, '\n');
-  if (newLine != NULL)
-  {
+  if (newLine != NULL) {
     *newLine = '\0';
-  }
-  else
-  {
+  } else {
     while (getchar() != '\n')
       ;
   }
@@ -32,8 +26,7 @@ bool get_user_input(char *buffer, size_t size)
   return true;
 }
 
-bool get_date_from_user(struct tm *date)
-{
+bool get_date_from_user(struct tm *date) {
   char input[11];
   time_t now = time(NULL);
 
@@ -45,17 +38,13 @@ bool get_date_from_user(struct tm *date)
   printf("Enter a date (24:1:2025) or press Enter for today: ");
   fgets(input, sizeof(input), stdin);
 
-  if (strlen(input) > 1)
-  {
+  if (strlen(input) > 1) {
     int day, month, year;
-    if (sscanf(input, "%d:%d:%d", &day, &month, &year) == 3)
-    {
+    if (sscanf(input, "%d:%d:%d", &day, &month, &year) == 3) {
       date->tm_year = year - 1900;
       date->tm_mon = month - 1;
       date->tm_mday = day;
-    }
-    else
-    {
+    } else {
       printf("Invalid date format.");
       return false;
     }
@@ -64,18 +53,14 @@ bool get_date_from_user(struct tm *date)
   return true;
 }
 
-void stringToLower(char *str)
-{
-  for (int i = 0; str[i]; i++)
-  {
+void stringToLower(char *str) {
+  for (int i = 0; str[i]; i++) {
     str[i] = tolower(str[i]);
   }
 }
 
-bool stringContains(const char *str, const char *substr)
-{
-  if (str == NULL || substr == NULL)
-  {
+bool stringContains(const char *str, const char *substr) {
+  if (str == NULL || substr == NULL) {
     return false;
   }
 
@@ -90,32 +75,25 @@ bool stringContains(const char *str, const char *substr)
   return strstr(strLower, substrLower) != NULL;
 }
 
-CarNode *insertionSort(CarNode *head, CompareFunc compare)
-{
-  if (head == NULL || head->next == NULL)
-  {
+CarNode *insertionSort(CarNode *head, CompareFunc compare) {
+  if (head == NULL || head->next == NULL) {
     return head;
   }
 
   CarNode *sorted = NULL;
   CarNode *current = head;
 
-  while (current != NULL)
-  {
+  while (current != NULL) {
     CarNode *next = current->next;
 
-    if (sorted == NULL || compare(&sorted->data, &current->data) >= 0)
-    {
+    if (sorted == NULL || compare(&sorted->data, &current->data) >= 0) {
       current->next = sorted;
       sorted = current;
-    }
-    else
-    {
+    } else {
       CarNode *temp = sorted;
 
       while (temp->next != NULL &&
-             compare(&temp->next->data, &current->data) < 0)
-      {
+             compare(&temp->next->data, &current->data) < 0) {
         temp = temp->next;
       }
       current->next = temp->next;
@@ -126,8 +104,7 @@ CarNode *insertionSort(CarNode *head, CompareFunc compare)
   return sorted;
 }
 
-int compare_profits_desending(const CarData *a, const CarData *b)
-{
+int compare_profits_desending(const CarData *a, const CarData *b) {
   if (!a->has_been_sold && !b->has_been_sold)
     return 0;
   if (a->has_been_sold && !b->has_been_sold)
@@ -139,4 +116,18 @@ int compare_profits_desending(const CarData *a, const CarData *b)
   int profit_b = b->selling_price - b->purchase_price;
 
   return profit_b - profit_a;
+}
+
+void delete_char(char *str, char c) {
+  int read_index = 0;
+  int write_index = 0;
+
+  while (str[read_index] != '\0') {
+    if (str[read_index] != c) {
+      str[write_index] = str[read_index];
+      write_index++;
+    }
+    read_index++;
+  }
+  str[write_index] = '\0';
 }

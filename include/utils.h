@@ -11,5 +11,6 @@ void stringToLower(char *str);
 bool stringContains(const char *str, const char *substr);
 CarNode *insertionSort(CarNode *head, CompareFunc compare);
 int compare_profits_desending(const CarData *a, const CarData *b);
+void delete_char(char *str, char c);
 
 #endif

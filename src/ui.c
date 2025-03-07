@@ -3,10 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void clear_terminal() { system("clear || cls"); }
+void clear_terminal(void) { system("clear || cls"); }
 
-void print_header()
-{
+void print_header(void) {
   clear_terminal();
   printf("========================================\n");
   printf("       CAR SALES MANAGEMENT SYSTEM      \n");
@@ -21,41 +20,35 @@ void print_header()
   printf("8. Exit\n\n");
 }
 
-int get_user_choice()
-{
+int get_user_choice(void) {
   char input[MAX_STRING_LENGTH];
 
   printf("Enter your choice (1-8): ");
 
-  if (fgets(input, sizeof(input), stdin) == NULL)
-  {
+  if (fgets(input, sizeof(input), stdin) == NULL) {
     return -1;
   }
 
   return strtol(input, NULL, 10);
 }
 
-float get_float()
-{
+float get_float(void) {
   char input[MAX_STRING_LENGTH];
 
-  if (fgets(input, sizeof(input), stdin) == NULL)
-  {
+  if (fgets(input, sizeof(input), stdin) == NULL) {
     return -1;
   }
 
   return strtof(input, NULL);
 }
 
-void clear_input_buffer()
-{
+void clear_input_buffer(void) {
   int c;
   while ((c = getchar()) != '\n' && c != EOF)
     ;
 }
 
-void wait_for_enter()
-{
+void wait_for_enter(void) {
   printf("Press enter to continue...");
   getchar();
 }
