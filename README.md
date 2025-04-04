@@ -3,7 +3,7 @@
 ## Prerequisites
 - clang
 - Make
-- Bear (optional for generating compile_commands for linter support)
+- CMake
 
 ## Project configuration
 1. Clone the repository
@@ -13,8 +13,11 @@ cd cCarSaleManagementSystem
 ```
 2. Build the binary
 ```bash
-make clean # optional: cleans previous builds
-bear -- make # or just make if you dont need compile_commands
+mdir build
+cd build
+cmake ..
+make
+./main
 ```
 
 ## Project structure
